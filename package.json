@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "start": "webpack-dev-server",
-    "build": "webpack"
+    "build": "webpack --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/zcemycl/webpack-ts-mpa-example#readme",
   "devDependencies": {
     "@types/jest": "^29.0.1",
+    "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-minimizer-webpack-plugin": "^4.1.0",
     "html-minimizer-webpack-plugin": "^4.1.0",
