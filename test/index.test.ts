@@ -1,4 +1,4 @@
-// const { describe, expect, test } = require('@jest/globals')
+// import { describe, expect, test } from "@jest/globals"
 const puppeteer = require('puppeteer')
 const repoName = 'webpack-ts-mpa-example'
 const len = repoName.length;
@@ -22,8 +22,8 @@ test('should click', async () => {
         `file://${__dirname.slice(0, si+len)}/${repoName}/dist/index.html`:
         `file://${__dirname.slice(0, si+len)}/dist/index.html`);
     await page.click('button');
-    // const paragraph = await page.$eval('h4', (input: HTMLElement) => input.innerHTML);
-    // console.log(paragraph)
-    // expect(paragraph).not.toBe('');
+    const paragraph = await page.$eval('h4', (input: HTMLElement) => input.innerHTML);
+    console.log(paragraph)
+    expect(paragraph).not.toBe('');
     await browser.close()
 })
