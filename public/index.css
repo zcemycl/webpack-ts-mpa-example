@@ -1,0 +1,16 @@
+html{
+    width: 100%;
+}
+
+#root{ 
+    height: 90%;
+    width: 95%;
+    padding: 2%;
+    text-align: center;
+}
+
+h4.output {
+    width: 95%;
+    height: 95vh;
+    overflow-x:scroll;
+}
