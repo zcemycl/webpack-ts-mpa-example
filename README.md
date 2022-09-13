@@ -1,4 +1,5 @@
-### Multipages Application with Typescript and Webpack ![example workflow](https://github.com/zcemycl/webpack-ts-mpa-example/actions/workflows/main.yml/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/zcemycl/webpack-ts-mpa-example/badge.svg?branch=main)](https://coveralls.io/github/zcemycl/webpack-ts-mpa-example?branch=main)
+### Multipages Application with Typescript and Webpack 
+![example workflow](https://github.com/zcemycl/webpack-ts-mpa-example/actions/workflows/main.yml/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/zcemycl/webpack-ts-mpa-example/badge.svg?branch=main)](https://coveralls.io/github/zcemycl/webpack-ts-mpa-example?branch=main)
 
 #### Techniques
 1. Model View Controller (MVC)

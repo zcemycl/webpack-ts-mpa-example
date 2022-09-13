@@ -21,7 +21,6 @@ describe('test view of index page', () => {
     })
 
     test('test constructor', () => {
-        // expect(view.getElement).toBeCalledTimes(1);
         expect(view.button.textContent).toBe('New Number');
         expect(view.paragraph.innerHTML).toBe('');
     })
@@ -29,5 +28,13 @@ describe('test view of index page', () => {
     test('test displayChanges', () => {
         view.displayChanges([3,4,5]);
         expect(view.paragraph.innerHTML).not.toBe('');
+    })
+
+    test('test bindAddRandom', () => {
+        const logSpy = jest.spyOn(console, 'log')
+        view.bindAddRandom((num: number) => {});
+        view.button.click();
+        expect(console.log).toBeCalled() 
+        expect(logSpy).toHaveBeenCalledWith('click!!!')
     })
 })
