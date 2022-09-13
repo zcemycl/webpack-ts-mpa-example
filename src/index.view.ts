@@ -14,11 +14,11 @@ export class View implements IView {
     paragraph: HTMLElement;
 
     constructor() {
-        this.app = this.getElement('#root');
-        this.button = this.createElement('button')
+        this.app = this.getElement('#root') as HTMLDivElement;
+        this.button = this.createElement('button') as HTMLButtonElement;
         this.button.textContent = 'New Number'
         
-        this.paragraph = this.createElement('h4', 'output')
+        this.paragraph = this.createElement('h4', 'output') as HTMLHeadingElement;
         this.paragraph.innerHTML = ''
         this.app.append(this.button, this.paragraph)
     }

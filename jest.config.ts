@@ -8,6 +8,7 @@ const config: Config.InitialOptions = {
     transform: {
         '^.+\\.(ts|tsx|js|jsx)$': 'ts-jest',
     },      
+    // setupFiles: ['<rootDir>/test/dom.js'],
     // setupFilesAfterEnv: ['<rootDir>/test/setup/setup-matchers.js'],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
     collectCoverageFrom: [
