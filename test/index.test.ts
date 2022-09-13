@@ -1,4 +1,4 @@
-const { describe, expect, test } = require('@jest/globals')
+// const { describe, expect, test } = require('@jest/globals')
 const puppeteer = require('puppeteer')
 const repoName = 'webpack-ts-mpa-example'
 const len = repoName.length;
