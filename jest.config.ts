@@ -5,8 +5,12 @@ const config: Config.InitialOptions = {
     testEnvironment: 'jsdom',
     preset: 'jest-puppeteer',
     transform: {
-        '^.+\\.tsx?$': 'ts-jest',
+        '^.+\\.(ts|tsx|js|jsx)$': 'ts-jest',
     },      
+    collectCoverageFrom: [
+        'src/**/*.{ts,tsx,js,jsx}',
+        '!src/**/*.d.ts'
+    ]
 }
 
 export default config;
