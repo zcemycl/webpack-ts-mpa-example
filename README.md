@@ -3,7 +3,7 @@
 
 #### Techniques
 1. Model View Controller (MVC)
-2. Jest for unit testing
+2. Jest for unit and mock testings
 3. Puppeteer for e2e testing
 4. Webpack
 5. MultiPages Application
