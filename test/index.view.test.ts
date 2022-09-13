@@ -3,7 +3,7 @@ const { JSDOM } = require('jsdom')
 const dom = new JSDOM('<!DOCTYPE html><div id="root"></div>');
 global.document = dom.window.document
 global.window = dom.window
-import { View } from '../src/index.view'
+const { View } = require('../src/index.view')
 
 
 describe('testing view of index page', () => {
