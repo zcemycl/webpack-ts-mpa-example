@@ -1,4 +1,3 @@
-// import { describe, expect, test } from "@jest/globals"
 const puppeteer = require('puppeteer')
 const repoName = 'webpack-ts-mpa-example'
 const len = repoName.length;

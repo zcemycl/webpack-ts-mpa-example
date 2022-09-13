@@ -2,7 +2,6 @@ import { Controller } from '../src/index.control'
 import { IView, View } from '../src/index.view'
 import { IModel, Model } from '../src/index.model'
 
-// const app = new Controller( new Model(), new View() );
 let spy: jest.SpyInstance;
 beforeAll(() => {
     spy = jest.spyOn(document, 'querySelector')
