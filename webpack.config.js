@@ -5,7 +5,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const glob = require("glob");
 
-const entry = glob.sync("src/**/*.ts")
+const entry = glob.sync("src/**/index.ts")
     .reduce((x,y) => Object.assign(x, {
         [y.replace(/^src\//, '').replace('.ts', '')]:'./'+y,
     }), {});
