@@ -1,6 +1,7 @@
 export interface IView {
     app: HTMLElement;
     button: HTMLElement;
+    aboutbtn: HTMLElement;
     paragraph: HTMLElement;
     getElement: (selector: string) => Element|null ;
     createElement: (tag: string, className?: string) => HTMLElement;
@@ -11,16 +12,22 @@ export interface IView {
 export class View implements IView {
     app: HTMLElement;
     button: HTMLElement;
+    aboutbtn: HTMLElement;
     paragraph: HTMLElement;
 
     constructor() {
         this.app = this.getElement('#root') as HTMLDivElement;
         this.button = this.createElement('button') as HTMLButtonElement;
         this.button.textContent = 'New Number'
+        this.aboutbtn = this.createElement('button') as HTMLButtonElement;
+        this.aboutbtn.textContent = 'About'
+        this.aboutbtn.onclick = () => {
+            location.href = "/about/";
+        }
         
         this.paragraph = this.createElement('h4', 'output') as HTMLHeadingElement;
         this.paragraph.innerHTML = ''
-        this.app.append(this.button, this.paragraph)
+        this.app.append(this.button, this.aboutbtn, this.paragraph)
     }
 
     getElement(selector: string): HTMLElement {
