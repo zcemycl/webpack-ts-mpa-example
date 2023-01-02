@@ -1,1 +1,1 @@
-(()=>{"use strict";console.log("this is about page...")})();
+(()=>{"use strict";console.log("this is about page...");const t=document.querySelector("#root"),e=document.createElement("button");e.textContent="Home",e.onclick=()=>{location.href="/"},t.append(e)})();
