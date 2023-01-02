@@ -17,3 +17,5 @@ app.append(homeBtn)
 
 const homeBtn_nav = document.getElementById('homebtn') as HTMLButtonElement
 homeBtn_nav.onclick = homeCallback
+
+export {app, homeBtn, homeBtn_nav, homeCallback}
