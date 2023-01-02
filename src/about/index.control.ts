@@ -6,13 +6,14 @@ export interface IController {
   view: IView
 }
 
-const homeCallback = () => {
+export const homeCallback = () => {
   const suffix = '/'
   if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
     location.href = '/webpack-ts-mpa-example' + suffix
   } else {
     location.href = suffix
   }
+  return location.href
 }
 
 export class Controller implements IController {

@@ -1,4 +1,4 @@
-import { IController, Controller } from '../../src/about/index.control'
+import { IController, Controller, homeCallback } from '../../src/about/index.control'
 import { IView, View } from '../../src/about/index.view'
 import { IModel, Model } from '../../src/about/index.model'
 
@@ -12,6 +12,7 @@ describe('test controller of index page', () => {
   let view: IView
   let model: IModel
   let controller: IController
+
   beforeAll(() => {
     document.body.innerHTML = '<div id="root">' + '</div>' + '<a href="#" class="nav-link" id="homebtn">Home</a>'
     mockElement = document.body
@@ -26,7 +27,11 @@ describe('test controller of index page', () => {
     jest.restoreAllMocks()
   })
 
-  test('test', () => {
+  test('test navbar home', () => {
     expect(controller.view.navbar_home.textContent).toBe('Home')
+  })
+
+  test('test home callback', () => {
+    expect(homeCallback()).toBe('http://localhost/')
   })
 })
