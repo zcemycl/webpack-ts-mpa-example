@@ -1,4 +1,4 @@
-import { Controller } from '../src/index.control'
+import { IController, Controller } from '../src/index.control'
 import { IView, View } from '../src/index.view'
 import { IModel, Model } from '../src/index.model'
 
@@ -8,10 +8,10 @@ beforeAll(() => {
 })
 
 describe('test controller of index page', () => {
-    let mockElement: any;
+    let mockElement: HTMLDivElement;
     let view: IView;
     let model: IModel;
-    let controller: any;
+    let controller: IController;
     beforeAll(() => {
         mockElement = document.createElement('div')
         mockElement.setAttribute('id', 'root')
@@ -19,7 +19,8 @@ describe('test controller of index page', () => {
         jest.spyOn(View.prototype, 'getElement').mockReturnValue(mockElement)
         view = new View()
         model = new Model()
-        controller = new Controller(model, view)
+        controller = new Controller(model, view);
+        console.log(controller)
     })
 
     afterAll(() => {

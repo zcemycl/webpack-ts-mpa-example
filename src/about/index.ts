@@ -1,6 +1,6 @@
 console.log('this is about page...')
 
-const homeCallback = (e: any) => {
+const homeCallback = () => {
     const suffix = "/"
     if (location.hostname !== "localhost" && location.hostname !== "127.0.0.1"){
         location.href = "/webpack-ts-mpa-example"+suffix;

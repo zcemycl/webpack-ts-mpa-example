@@ -46,7 +46,7 @@ export class View implements IView {
     }
 
     bindAddRandom(handler: (num: number) => void) {
-        this.button.addEventListener('click', event => {
+        this.button.addEventListener('click', () => {
             console.log('click!!!')
             handler(Math.floor(Math.random() * 100) + 1);
         })

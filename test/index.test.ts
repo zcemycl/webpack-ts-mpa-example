@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-var-requires: "off" */
 const puppeteer = require('puppeteer')
 const repoName = 'webpack-ts-mpa-example'
 const len = repoName.length;

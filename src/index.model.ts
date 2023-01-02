@@ -11,7 +11,7 @@ export class Model implements IModel{
     onDataChanged: (data: number[])=> void;
     constructor() {
         this.data = []
-        this.onDataChanged = (data: number[]) => {};
+        this.onDataChanged = (data: number[]) => {console.log(data)};
     }
 
     bindDataChanged(callback: (data: number[])=>void) {

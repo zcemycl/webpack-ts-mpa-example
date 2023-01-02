@@ -6,7 +6,7 @@ beforeAll(() => {
 })
 
 describe('test view of index page', () => {
-    let mockElement: any;
+    let mockElement: HTMLDivElement;
     let view: IView;
     beforeAll(() => {
         mockElement = document.createElement('div')
@@ -22,6 +22,7 @@ describe('test view of index page', () => {
 
     test('test constructor', () => {
         expect(view.button.textContent).toBe('New Number');
+        expect(view.aboutbtn.textContent).toBe('About');
         expect(view.paragraph.innerHTML).toBe('');
     })
 
@@ -32,7 +33,7 @@ describe('test view of index page', () => {
 
     test('test bindAddRandom', () => {
         const logSpy = jest.spyOn(console, 'log')
-        view.bindAddRandom((num: number) => {});
+        view.bindAddRandom((num: number) => {console.log(num)});
         view.button.click();
         expect(console.log).toBeCalled() 
         expect(logSpy).toHaveBeenCalledWith('click!!!')

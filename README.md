@@ -12,3 +12,4 @@
 
 ### References
 1. [Define global variable with webpack](https://stackoverflow.com/questions/37656592/define-global-variable-with-webpack)
+2. [How to use ESLint with TypeScript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)

@@ -1,7 +1,14 @@
 import { IModel } from './index.model'
 import { IView } from './index.view'
 
-export class Controller {
+export interface IController {
+    model: IModel
+    view: IView
+    onDataChanged: (data: number[]) => void;
+    handleAddRandom: (num: number) => void;
+}
+
+export class Controller implements IController{
     model: IModel
     view: IView
 
