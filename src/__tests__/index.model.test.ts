@@ -1,4 +1,4 @@
-import { Model } from '../src/index.model'
+import { Model } from '../index.model'
 
 const model = new Model()
 

@@ -1,4 +1,4 @@
-import { IView, View } from '../src/index.view'
+import { IView, View } from '../index.view'
 
 let spy: jest.SpyInstance
 beforeAll(() => {

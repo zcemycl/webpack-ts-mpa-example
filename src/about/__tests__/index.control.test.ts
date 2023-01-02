@@ -1,6 +1,6 @@
-import { IController, Controller, aboutCallback } from '../src/index.control'
-import { IView, View } from '../src/index.view'
-import { IModel, Model } from '../src/index.model'
+import { IController, Controller, homeCallback } from '../index.control'
+import { IView, View } from '../index.view'
+import { IModel, Model } from '../index.model'
 
 let spy: jest.SpyInstance
 beforeAll(() => {
@@ -12,11 +12,11 @@ describe('test controller of index page', () => {
   let view: IView
   let model: IModel
   let controller: IController
+
   beforeAll(() => {
-    document.body.innerHTML = '<div id="root">' + '</div>'
+    document.body.innerHTML = '<div id="root">' + '</div>' + '<a href="#" class="nav-link" id="homebtn">Home</a>'
     mockElement = document.body
     spy.mockReturnValue(mockElement)
-    jest.spyOn(View.prototype, 'getElement').mockReturnValue(mockElement)
     view = new View()
     model = new Model()
     controller = new Controller(model, view)
@@ -27,12 +27,11 @@ describe('test controller of index page', () => {
     jest.restoreAllMocks()
   })
 
-  test('test handleAddRandom', () => {
-    view.button.click()
-    expect(view.paragraph.innerHTML).not.toBe('')
+  test('test navbar home', () => {
+    expect(controller.view.navbar_home.textContent).toBe('Home')
   })
 
-  test('test about callback', () => {
-    expect(aboutCallback()).toBe('http://localhost/')
+  test('test home callback', () => {
+    expect(homeCallback()).toBe('http://localhost/')
   })
 })
