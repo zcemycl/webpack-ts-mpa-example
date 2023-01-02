@@ -9,3 +9,6 @@
 5. MultiPages Application
 6. Github action to deploy github pages
 7. Typescript
+
+### References
+1. [Define global variable with webpack](https://stackoverflow.com/questions/37656592/define-global-variable-with-webpack)
