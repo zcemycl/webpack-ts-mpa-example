@@ -8,7 +8,8 @@
     "start": "webpack-dev-server",
     "build": "webpack --config webpack.config.prod.js",
     "lint": "eslint . --ext .js,.ts",
-    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -42,12 +43,14 @@
     "dompurify": "^2.4.0",
     "eslint": "^8.31.0",
     "html-minimizer-webpack-plugin": "^4.1.0",
+    "husky": "^8.0.0",
     "jest": "^29.0.0",
     "jest-environment-jsdom": "^29.0.0",
     "jest-extended": "^3.1.0",
     "jest-puppeteer": "^6.1.1",
     "jsdom": "^20.0.0",
     "jsdom-global": "^3.0.2",
+    "lint-staged": "^13.1.0",
     "lite-server": "^2.6.1",
     "prettier": "^2.8.1",
     "puppeteer": "^17.1.3",

@@ -1,33 +1,33 @@
-import { IModel } from "./index.model";
-import { IView } from "./index.view";
+import { IModel } from './index.model'
+import { IView } from './index.view'
 
 export interface IController {
-  model: IModel;
-  view: IView;
-  onDataChanged: (data: number[]) => void;
-  handleAddRandom: (num: number) => void;
+  model: IModel
+  view: IView
+  onDataChanged: (data: number[]) => void
+  handleAddRandom: (num: number) => void
 }
 
 export class Controller implements IController {
-  model: IModel;
-  view: IView;
+  model: IModel
+  view: IView
 
   constructor(model: IModel, view: IView) {
-    this.model = model;
-    this.view = view;
+    this.model = model
+    this.view = view
 
-    this.model.bindDataChanged(this.onDataChanged);
-    this.view.bindAddRandom(this.handleAddRandom);
+    this.model.bindDataChanged(this.onDataChanged)
+    this.view.bindAddRandom(this.handleAddRandom)
 
-    this.onDataChanged(this.model.data);
+    this.onDataChanged(this.model.data)
   }
 
   onDataChanged = (data: number[]) => {
-    console.log("changed data");
-    this.view.displayChanges(data);
-  };
+    console.log('changed data')
+    this.view.displayChanges(data)
+  }
 
   handleAddRandom = (num: number) => {
-    this.model.addRandom(num);
-  };
+    this.model.addRandom(num)
+  }
 }
