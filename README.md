@@ -9,7 +9,10 @@
 5. MultiPages Application
 6. Github action to deploy github pages
 7. Typescript
+8. ESLint
+9. Prettier
 
 ### References
 1. [Define global variable with webpack](https://stackoverflow.com/questions/37656592/define-global-variable-with-webpack)
 2. [How to use ESLint with TypeScript](https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/)
+3. [Linting in TypeScript using ESLint and Prettier](https://blog.logrocket.com/linting-typescript-eslint-prettier/)
