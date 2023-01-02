@@ -22,9 +22,13 @@ export class View implements IView {
         this.aboutbtn = this.createElement('button') as HTMLButtonElement;
         this.aboutbtn.textContent = 'About'
         this.aboutbtn.onclick = () => {
-            location.href = "/about/";
+            const suffix = "/about/"
+            if (location.hostname !== "localhost" && location.hostname !== "127.0.0.1"){
+                location.href = "/webpack-ts-mpa-example"+suffix;
+            } else {
+                location.href = suffix;
+            }
         }
-        
         this.paragraph = this.createElement('h4', 'output') as HTMLHeadingElement;
         this.paragraph.innerHTML = ''
         this.app.append(this.button, this.aboutbtn, this.paragraph)
