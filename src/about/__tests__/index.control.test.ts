@@ -1,4 +1,3 @@
-// jest.mock('../index.control')
 import { IController, Controller, homeCallback } from '../index.control'
 import { IView, View } from '../index.view'
 import { IModel, Model } from '../index.model'
