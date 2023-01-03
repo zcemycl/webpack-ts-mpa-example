@@ -8,7 +8,7 @@ export interface IController {
 
 export const homeCallback = () => {
   const suffix = '/'
-  if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+  if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
     location.href = '/webpack-ts-mpa-example' + suffix
   } else {
     location.href = suffix

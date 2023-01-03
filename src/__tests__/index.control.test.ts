@@ -32,7 +32,16 @@ describe('test controller of index page', () => {
     expect(view.paragraph.innerHTML).not.toBe('')
   })
 
-  test('test about callback', () => {
-    expect(aboutCallback()).toBe('http://localhost/')
+  test.each`
+    hostname               | expected
+    ${'localhost'}         | ${'/about/'}
+    ${'zcemycl.github.io'} | ${'/webpack-ts-mpa-example/about/'}
+  `('test about callback', ({ hostname, expected }) => {
+    const location: Location = window.location
+    jest.spyOn(window, 'location', 'get').mockReturnValue({
+      ...location,
+      hostname: hostname,
+    })
+    expect(aboutCallback()).toBe(expected)
   })
 })

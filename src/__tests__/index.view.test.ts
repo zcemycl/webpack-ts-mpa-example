@@ -12,7 +12,7 @@ describe('test view of index page', () => {
     mockElement = document.createElement('div')
     mockElement.setAttribute('id', 'root')
     spy.mockReturnValue(mockElement)
-    jest.spyOn(View.prototype, 'getElement').mockReturnValue(mockElement)
+    // jest.spyOn(View.prototype, 'getElement').mockReturnValue(mockElement)
     view = new View()
   })
 

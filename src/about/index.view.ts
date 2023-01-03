@@ -10,6 +10,7 @@ export class View implements IView {
   homeBtn: HTMLButtonElement
 
   constructor() {
+    console.log('this is about page...')
     this.app = document.querySelector('#root') as HTMLElement
     this.homeBtn = document.createElement('button') as HTMLButtonElement
     this.homeBtn.textContent = 'Home'

@@ -1,3 +1,4 @@
+// jest.mock('../index.control')
 import { IController, Controller, homeCallback } from '../index.control'
 import { IView, View } from '../index.view'
 import { IModel, Model } from '../index.model'
@@ -31,7 +32,16 @@ describe('test controller of index page', () => {
     expect(controller.view.navbar_home.textContent).toBe('Home')
   })
 
-  test('test home callback', () => {
-    expect(homeCallback()).toBe('http://localhost/')
+  test.each`
+    hostname               | expected
+    ${'localhost'}         | ${'/'}
+    ${'zcemycl.github.io'} | ${'/webpack-ts-mpa-example/'}
+  `('test home callback', ({ hostname, expected }) => {
+    const location: Location = window.location
+    jest.spyOn(window, 'location', 'get').mockReturnValue({
+      ...location,
+      hostname: hostname,
+    })
+    expect(homeCallback()).toBe(expected)
   })
 })
