@@ -3,6 +3,9 @@ export interface IView {
   button: HTMLElement
   aboutbtn: HTMLElement
   paragraph: HTMLElement
+  prevbtn: HTMLButtonElement
+  nextbtn: HTMLButtonElement
+  groups: HTMLCollectionOf<HTMLDivElement>
   getElement: (selector: string) => Element | null
   createElement: (tag: string, className?: string) => HTMLElement
   bindAddRandom: (handler: (num: number) => void) => void
@@ -14,6 +17,9 @@ export class View implements IView {
   button: HTMLElement
   aboutbtn: HTMLElement
   paragraph: HTMLElement
+  prevbtn: HTMLButtonElement
+  nextbtn: HTMLButtonElement
+  groups: HTMLCollectionOf<HTMLDivElement>
 
   constructor() {
     this.app = this.getElement('#root') as HTMLDivElement
@@ -21,10 +27,12 @@ export class View implements IView {
     this.button.textContent = 'New Number'
     this.aboutbtn = this.createElement('button') as HTMLButtonElement
     this.aboutbtn.textContent = 'About'
-    // this.aboutbtn.onclick =
     this.paragraph = this.createElement('h4', 'output') as HTMLHeadingElement
     this.paragraph.innerHTML = ''
     this.app.append(this.button, this.aboutbtn, this.paragraph)
+    this.prevbtn = document.getElementById('prev-button') as HTMLButtonElement
+    this.nextbtn = document.getElementById('next-button') as HTMLButtonElement
+    this.groups = document.getElementsByClassName('card-group') as HTMLCollectionOf<HTMLDivElement>
   }
 
   getElement(selector: string): HTMLElement {
