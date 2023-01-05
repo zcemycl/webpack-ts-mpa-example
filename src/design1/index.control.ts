@@ -18,10 +18,6 @@ export class Controller implements IController {
     this.view = view
 
     this.view.nav_button.onclick = this.handleNavToggle
-    // this.view.buttons[0].addEventListener('click', () => {
-    //     this.handleLeftClick.bind(this)
-    // })
-    // console.log(this.view.buttons)
     for (let i = 0; i < this.view.buttons.length; i++) {
       if (i % 2 == 0) this.view.buttons[i].onclick = this.handleLeftClick
       else this.view.buttons[i].onclick = this.handleRightClick
