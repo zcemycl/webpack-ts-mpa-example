@@ -13,7 +13,16 @@ describe('test controller of index page', () => {
   let model: IModel
   let controller: IController
   beforeAll(() => {
-    document.body.innerHTML = '<div id="root">' + '</div>'
+    document.body.innerHTML =
+      '<div class="card-group">' +
+      '<button id="prev-button"' +
+      '</button>' +
+      '<button id="next-button"' +
+      '</button>' +
+      '</div>' +
+      '<div id="root">' +
+      '</div>' +
+      '<a href="#" class="nav-link" id="homebtn">Home</a>'
     mockElement = document.body
     spy.mockReturnValue(mockElement)
     jest.spyOn(View.prototype, 'getElement').mockReturnValue(mockElement)

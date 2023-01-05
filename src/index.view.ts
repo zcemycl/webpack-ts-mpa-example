@@ -25,6 +25,7 @@ export class View implements IView {
     this.app = this.getElement('#root') as HTMLDivElement
     this.button = this.createElement('button') as HTMLButtonElement
     this.button.textContent = 'New Number'
+    this.button.setAttribute('data-testid', '0')
     this.aboutbtn = this.createElement('button') as HTMLButtonElement
     this.aboutbtn.textContent = 'About'
     this.paragraph = this.createElement('h4', 'output') as HTMLHeadingElement

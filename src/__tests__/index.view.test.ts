@@ -6,11 +6,22 @@ beforeAll(() => {
 })
 
 describe('test view of index page', () => {
-  let mockElement: HTMLDivElement
+  let mockElement: HTMLElement
   let view: IView
   beforeAll(() => {
-    mockElement = document.createElement('div')
-    mockElement.setAttribute('id', 'root')
+    document.body.innerHTML =
+      '<div class="card-group">' +
+      '<button id="prev-button"' +
+      '</button>' +
+      '<button id="next-button"' +
+      '</button>' +
+      '</div>' +
+      '<div id="root">' +
+      '</div>' +
+      '<a href="#" class="nav-link" id="homebtn">Home</a>'
+    mockElement = document.body
+    // mockElement = document.createElement('div')
+    // mockElement.setAttribute('id', 'root')
     spy.mockReturnValue(mockElement)
     // jest.spyOn(View.prototype, 'getElement').mockReturnValue(mockElement)
     view = new View()
