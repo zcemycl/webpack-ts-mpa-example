@@ -2,6 +2,44 @@
 
 ![example workflow](https://github.com/zcemycl/webpack-ts-mpa-example/actions/workflows/main.yml/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/zcemycl/webpack-ts-mpa-example/badge.svg?branch=main)](https://coveralls.io/github/zcemycl/webpack-ts-mpa-example?branch=main)
 
+#### Project Structure
+
+```
+├── assets # css
+│   ├── components
+│   └── pages # @import components
+│       ├── index.css
+│       └── page1
+│           ├── index-lg.css
+│           ├── index-sm.css
+│           ├── index-md.css
+│           └── index.css # all @imports
+├── dist # after build
+│   ├── index.html # link one 1 js and 1 css
+│   ├── index.bundle.js # group mvc
+│   ├── index.css # many css to 1 css
+│   └── page1
+│       ├── index.html
+│       ├── index.bundle.js
+│       └── index.css
+├── public # html
+│   ├── index.html
+│   └── page1
+│       └── index.html
+└── src # ts
+    ├── index.ts # import mvc
+    ├── index.model.ts
+    ├── index.view.ts
+    ├── index.control.ts
+    └── page1
+        ├── index.ts
+        ├── index.model.ts
+        ├── index.view.ts
+        └── index.control.ts
+```
+
+Follow-ups: gif,jpg,jpeg,png? many-to-1 html?
+
 #### Techniques
 
 1. Model View Controller (MVC)
