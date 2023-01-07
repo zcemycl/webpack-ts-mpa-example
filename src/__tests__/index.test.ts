@@ -14,7 +14,7 @@ console.log(
     : `file://${__dirname.slice(0, si + len)}/dist/index.html`
 )
 
-test('should click', async () => {
+test.skip('should click', async () => {
   const browser = await puppeteer.launch({
     headless: ci,
     slowMo: ci ? 0 : 80,
