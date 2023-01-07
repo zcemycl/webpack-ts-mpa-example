@@ -1,36 +1,19 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
-const path = require('path')
-const CopyPlugin = require("copy-webpack-plugin");
+const path = require('path');
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.js');
 const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CleanPlugin = require('clean-webpack-plugin');
-const glob = require("glob");
 
-const entry = glob.sync("src/**/index.ts")
-    .reduce((x,y) => Object.assign(x, {
-        [y.replace(/^src\//, '').replace('.ts', '')]:'./'+y,
-    }), {});
-
-console.log(entry)
-
-module.exports = {
+module.exports = merge(common, {
     mode: 'production',
-    entry,
-    plugins: [
-        new CleanPlugin.CleanWebpackPlugin(),
-        new CopyPlugin({
-            patterns: [
-                {
-                    from: 'public',
-                    to: './'
-                }
-            ]
-        })
-    ],
+    devtool: false,
     optimization: {
         minimize: true,
         minimizer: [
+            new CleanPlugin.CleanWebpackPlugin(),
             new HtmlMinimizerPlugin(),
             new CssMinimizerPlugin(),
             new TerserPlugin(),
@@ -41,17 +24,4 @@ module.exports = {
         filename: "[name].bundle.js",
         publicPath: 'dist'
     },
-    // devtool: 'none',
-    module: {
-        rules: [
-            {
-                test: /\.ts$/,
-                use: 'ts-loader', 
-                exclude: /node_modules/
-            }
-        ]
-    },
-    resolve: {
-        extensions: ['.ts', '.js']
-    }
-};
+})
