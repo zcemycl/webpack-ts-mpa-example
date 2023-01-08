@@ -24,7 +24,7 @@ console.log(entry)
 const htmlgens = Object.keys(entry).map(name => 
     new HtmlWebpackPlugin({
         inject: true,
-        template: './public/'+name+'.html',
+        template: './public/pages/'+name+'.html',
         filename: name+'.html',
         chunks: [name]
     }))
@@ -35,6 +35,15 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].css' // Generate css
         }),
+        // new HtmlWebpackPlugin({
+        //     inject: false,
+        //     template: './public/components/home/card_group/template.html',
+        //     filename: 'card_group0.html',
+        //     publicPath: './',
+        //     chunks: [],
+        //     index: 0,
+        //     status: "active"
+        // }),
         ...htmlgens
     ],
     module: {
