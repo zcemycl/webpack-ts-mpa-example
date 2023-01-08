@@ -21,7 +21,6 @@ module.exports = merge(common, {
     }, 
     output: {
         path: path.resolve(__dirname, 'dist'), 
-        filename: "[name].bundle.js",
-        publicPath: 'dist'
+        filename: "[name].bundle.js"
     },
 })

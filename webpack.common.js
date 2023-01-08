@@ -1,6 +1,6 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
 const glob = require("glob");
-const CopyPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 /**
@@ -16,27 +16,26 @@ const entry = glob.sync("src/**/index.ts")
         [
             './'+y,
             './'+y.replace('src/','assets/pages/')
-                .replace('.ts', '.css')]
+                .replace('.ts', '.css')
+        ]
     }), {});
 
 console.log(entry)
+const htmlgens = Object.keys(entry).map(name => 
+    new HtmlWebpackPlugin({
+        inject: true,
+        template: './public/'+name+'.html',
+        filename: name+'.html',
+        chunks: [name]
+    }))
 
 module.exports = {
     entry,
     plugins: [
-        new CopyPlugin({ // Copy all html files to dist according folder structure
-            patterns: [
-                {
-                    from: 'public/**/*.html',
-                    to({ absoluteFilename }) { // e.g. public/index.html
-                        return absoluteFilename.replace('public/','dist/')
-                      }
-                }
-            ]
-        }),
         new MiniCssExtractPlugin({
             filename: '[name].css' // Generate css
         }),
+        ...htmlgens
     ],
     module: {
         rules: [
