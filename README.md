@@ -31,15 +31,17 @@
 │       └── page1
 │           └── index.html
 └── src # ts
-    ├── index.ts # import mvc
-    ├── index.model.ts
-    ├── index.view.ts
-    ├── index.control.ts
-    └── page1
-        ├── index.ts
+    ├── utils # reusable
+    └── pages
+        ├── index.ts # import mvc
         ├── index.model.ts
         ├── index.view.ts
-        └── index.control.ts
+        ├── index.control.ts
+        └── page1
+            ├── index.ts
+            ├── index.model.ts
+            ├── index.view.ts
+            └── index.control.ts
 ```
 
 Follow-ups: gif,jpg,jpeg,png?
