@@ -66,10 +66,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.ts', '.js'],
-        alias: {
-            'utils': path.resolve(__dirname, './utils/index.ts')
-        }
+        extensions: ['.ts', '.js']
     },
     output: {
         path: path.resolve(__dirname, 'dist'), 

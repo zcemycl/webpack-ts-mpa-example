@@ -1,4 +1,5 @@
-import { IView, View } from '../index.view'
+// import { IView, View } from '../index.view'
+import * as Test from '../index.view'
 
 let spy: jest.SpyInstance
 beforeAll(() => {
@@ -7,7 +8,7 @@ beforeAll(() => {
 
 describe('test view of index page', () => {
   let mockElement: HTMLElement
-  let view: IView
+  let view: Test.IView
   beforeAll(() => {
     document.body.innerHTML =
       '<div class="card-group">' +
@@ -20,11 +21,9 @@ describe('test view of index page', () => {
       '</div>' +
       '<a href="#" class="nav-link" id="homebtn">Home</a>'
     mockElement = document.body
-    // mockElement = document.createElement('div')
-    // mockElement.setAttribute('id', 'root')
+    console.log(mockElement)
     spy.mockReturnValue(mockElement)
-    // jest.spyOn(View.prototype, 'getElement').mockReturnValue(mockElement)
-    view = new View()
+    view = new Test.View()
   })
 
   afterAll(() => {

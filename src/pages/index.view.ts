@@ -1,4 +1,4 @@
-declare const globals: IGlobals
+export declare const globals: IGlobals
 
 export interface IView {
   app: HTMLElement
@@ -24,8 +24,6 @@ export class View implements IView {
   groups: HTMLCollectionOf<HTMLDivElement>
 
   constructor() {
-    console.log(globals.a)
-    globals.func_a()
     this.app = this.getElement('#root') as HTMLDivElement
     this.button = this.createElement('button') as HTMLButtonElement
     this.button.textContent = 'New Number'
@@ -61,5 +59,10 @@ export class View implements IView {
   displayChanges(data: number[]) {
     console.log(data)
     this.paragraph.innerHTML = data.toString()
+  }
+
+  misc() {
+    console.log(globals.a)
+    globals.func_a()
   }
 }
