@@ -1,3 +1,5 @@
+declare const globals: IGlobals
+
 export interface IView {
   app: HTMLElement
   navbar_home: HTMLLinkElement
@@ -10,6 +12,7 @@ export class View implements IView {
   homeBtn: HTMLButtonElement
 
   constructor() {
+    globals.func_a()
     console.log('this is about page...')
     this.app = document.querySelector('#root') as HTMLElement
     this.homeBtn = document.createElement('button') as HTMLButtonElement

@@ -1,6 +1,7 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
 const path = require('path');
 const glob = require("glob");
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -9,7 +10,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
  * index: [src/index.ts, assets/pages/index.css]
  * design1/index: [src/design1/index.ts, assets/pages/design1/index.css]
  */
-const entry = glob.sync("src/**/index.ts")
+const entry = glob.sync("src/pages/**/index.ts")
     .reduce((x,y) => Object.assign(x, {
         [
             y.replace(/^src\/pages\//, '')
@@ -33,6 +34,9 @@ const htmlgens = Object.keys(entry).map(name =>
 module.exports = {
     entry,
     plugins: [
+        new webpack.ProvidePlugin({
+            'globals': path.resolve(__dirname, 'src/utils/index.ts')
+        }),
         new MiniCssExtractPlugin({
             filename: '[name].css' // Generate css
         }),
@@ -62,7 +66,10 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js'],
+        alias: {
+            'utils': path.resolve(__dirname, './utils/index.ts')
+        }
     },
     output: {
         path: path.resolve(__dirname, 'dist'), 
