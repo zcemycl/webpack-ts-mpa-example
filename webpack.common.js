@@ -1,4 +1,5 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
+const path = require('path');
 const glob = require("glob");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -35,15 +36,6 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].css' // Generate css
         }),
-        // new HtmlWebpackPlugin({
-        //     inject: false,
-        //     template: './public/components/home/card_group/template.html',
-        //     filename: 'card_group0.html',
-        //     publicPath: './',
-        //     chunks: [],
-        //     index: 0,
-        //     status: "active"
-        // }),
         ...htmlgens
     ],
     module: {
@@ -71,5 +63,9 @@ module.exports = {
     },
     resolve: {
         extensions: ['.ts', '.js']
+    },
+    output: {
+        path: path.resolve(__dirname, 'dist'), 
+        filename: "[name].bundle.js",
     }
 }

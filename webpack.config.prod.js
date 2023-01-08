@@ -1,5 +1,4 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
-const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
@@ -18,9 +17,5 @@ module.exports = merge(common, {
             new CssMinimizerPlugin(),
             new TerserPlugin(),
         ]
-    }, 
-    output: {
-        path: path.resolve(__dirname, 'dist'), 
-        filename: "[name].bundle.js"
-    },
+    }
 })
