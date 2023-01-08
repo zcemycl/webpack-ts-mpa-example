@@ -1,4 +1,4 @@
-declare const globals: IGlobals
+export declare const globals: IGlobals
 
 export interface IView {
   app: HTMLElement
@@ -12,6 +12,7 @@ export class View implements IView {
   homeBtn: HTMLButtonElement
 
   constructor() {
+    globals?.func_a?.()
     console.log('this is about page...')
     this.app = document.querySelector('#root') as HTMLElement
     this.homeBtn = document.createElement('button') as HTMLButtonElement
@@ -19,9 +20,5 @@ export class View implements IView {
     this.app.append(this.homeBtn)
 
     this.navbar_home = document.getElementById('homebtn') as HTMLLinkElement
-  }
-
-  misc() {
-    globals.func_a()
   }
 }

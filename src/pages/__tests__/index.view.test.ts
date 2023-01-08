@@ -23,6 +23,8 @@ describe('test view of index page', () => {
     mockElement = document.body
     console.log(mockElement)
     spy.mockReturnValue(mockElement)
+    console.log((global as any).__DEV__)
+    // const newGlobals: IGlobals = {}
     view = new Test.View()
   })
 

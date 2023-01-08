@@ -1,7 +1,7 @@
 declare global {
   interface IGlobals {
-    a: string
-    func_a: () => void
+    a?: string
+    func_a?: () => void
   }
 }
 
