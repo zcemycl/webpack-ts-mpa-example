@@ -23,9 +23,13 @@
 │       ├── index.bundle.js
 │       └── index.css
 ├── public # html
-│   ├── index.html
-│   └── page1
-│       └── index.html
+│   ├── components
+│   └── pages # require partial/components
+│       ├── index.html # require partial
+│       ├── partial1.html
+│       ├── partial2.html
+│       └── page1
+│           └── index.html
 └── src # ts
     ├── index.ts # import mvc
     ├── index.model.ts
@@ -38,7 +42,7 @@
         └── index.control.ts
 ```
 
-Follow-ups: gif,jpg,jpeg,png? many-to-1 html?
+Follow-ups: gif,jpg,jpeg,png?
 
 #### Techniques
 
