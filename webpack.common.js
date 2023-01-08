@@ -12,11 +12,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const entry = glob.sync("src/**/index.ts")
     .reduce((x,y) => Object.assign(x, {
         [
-            y.replace(/^src\//, '')
+            y.replace(/^src\/pages\//, '')
                 .replace('.ts', '')]:
         [
             './'+y,
-            './'+y.replace('src/','assets/pages/')
+            './'+y.replace('src/pages/','assets/pages/')
                 .replace('.ts', '.css')
         ]
     }), {});
