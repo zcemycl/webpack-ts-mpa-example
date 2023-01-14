@@ -1,4 +1,9 @@
 #!/bin/bash
+if [ "$1" == "-h" ] || [ "$1" == "--help" ] ; then
+    echo "Usage: ./setup_newpage.sh [new page name] [template name]"
+    echo "Usage: ./setup_newpage.sh [-h/--helper]"
+    exit 0
+fi
 pagename=$1
 mode=$2
 [[ -z "$pagename" ]] && { echo "[ERROR] Page name no provided, please input 1st arg."; exit 1; }
