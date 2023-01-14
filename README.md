@@ -59,6 +59,13 @@ Follow-ups: gif,jpg,jpeg,png?
 9. Prettier
 10. Cypress for e2e testing
 
+#### Tools
+
+1. Bash script for creating new page.
+   ```
+   ./setup_newpage.sh  newpagename standard
+   ```
+
 ### References
 
 1. [Define global variable with webpack](https://stackoverflow.com/questions/37656592/define-global-variable-with-webpack)

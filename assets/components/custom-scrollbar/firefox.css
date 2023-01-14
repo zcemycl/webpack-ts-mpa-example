@@ -1,0 +1,6 @@
+@supports (scrollbar-color: red blue) {
+  * {
+    scrollbar-color: hsl(120 100% 20% / 1) hsl(120 75% 50% / 1);
+    scrollbar-width: thin;
+  }
+}

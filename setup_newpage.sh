@@ -17,7 +17,8 @@ refpath='templates/'$mode
 [[ ! -d "$refpath" ]] && { echo "[ERROR] Template $refpath does not exist, please change 2nd arg."; exit 1; }
 echo '[INFO] Template checked. '
 
-match=$(find . -type d -name "$pagename")
+match=$(find . -type d -name "$tspath$pagename")
+echo "[INFO] $match"
 [[ ! -z "$match" ]] && { echo "[ERROR] Page name $pagename was repeated, please provide another page name."; exit 1; }
 echo '[INFO] Avoid repeated page checked. '
 
