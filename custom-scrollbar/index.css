@@ -1,0 +1,1 @@
+::-webkit-scrollbar{background:#9fdf9f;border-radius:100vw;height:4em;margin-block:.5em;width:4em}::-webkit-scrollbar-track{width:2em}::-webkit-scrollbar-thumb{background:linear-gradient(red,blue);border:.25em solid #20df20;border-radius:100vw}::-webkit-scrollbar-thumb:hover{background:#0f0}@supports (scrollbar-color:red blue){*{scrollbar-color:#060 #20df20;scrollbar-width:thin}}
