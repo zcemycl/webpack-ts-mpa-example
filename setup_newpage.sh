@@ -22,7 +22,7 @@ match=$(find . -type d -name "$pagename")
 echo '[INFO] Avoid repeated page checked. '
 
 echo "[INFO] Plan to create files (FROM) $refpath (TO) $csspath$pagename $htmlpath$pagename $tspath$pagename ... "
-echo "[INFO] mkdir $csspath$pagename $htmlpath$pagename $tspath$pagename"
+echo "[INFO] mkdir -p $csspath$pagename $htmlpath$pagename $tspath$pagename"
 echo "[INFO] cp $refpath/index.css $csspath$pagename"
 echo "[INFO] cp $refpath/index.html $htmlpath$pagename"
 echo "[INFO] cp $refpath/index.ts $tspath$pagename"
