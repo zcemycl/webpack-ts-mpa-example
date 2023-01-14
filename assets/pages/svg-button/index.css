@@ -1,0 +1,22 @@
+@import '../../components/svg-button/index.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  background: hsl(48, 18%, 83%);
+}
+
+.examples {
+  padding: 3rem;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 8vw, 4rem);
+}

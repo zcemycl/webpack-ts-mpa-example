@@ -1,0 +1,9 @@
+@import './button-one.css';
+@import './button-two.css';
+@import './button-three.css';
+
+button {
+  background: transparent;
+  border-radius: 1rem;
+  border: 10px solid var(--button-color, black);
+}

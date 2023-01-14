@@ -1,0 +1,21 @@
+.button-three {
+  --button-color: black;
+  overflow: hidden;
+}
+
+.button-three .line {
+  transition: 1s;
+  stroke-dasharray: 60 31 60 300;
+}
+.button-three[aria-expanded='true'] .line {
+  stroke-dasharray: 60 105 60 300;
+  stroke-dashoffset: -90;
+}
+.button-three .hamburger {
+  transition: translate 1s, rotate 1s;
+}
+.button-three[aria-expanded='true'] .hamburger {
+  /* outline: 3px solid red; */
+  translate: 10px -10px;
+  rotate: 0.125turn;
+}
