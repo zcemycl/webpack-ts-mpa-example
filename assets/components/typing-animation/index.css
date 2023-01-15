@@ -1,0 +1,41 @@
+h1::before,
+h1::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+h1::before {
+  background: var(--bg-color);
+  /* background: teal; */
+  animation: typewriter var(--typewriterSpeed) steps(var(--typewriterNoChars)) var(--typeStartDelay) forwards;
+}
+
+h1::after {
+  width: 0.125em;
+  background: black;
+  animation: typewriter var(--typewriterSpeed) steps(var(--typewriterNoChars)) var(--typeStartDelay) forwards,
+    blink calc(var(--typewriterSpeed) / var(--typewriterNoChars)) steps(var(--typewriterNoChars)) infinite;
+}
+
+@keyframes typewriter {
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes blink {
+  to {
+    background: transparent;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
