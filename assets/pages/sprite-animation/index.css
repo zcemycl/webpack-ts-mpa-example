@@ -1,0 +1,26 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+
+#canvas1 {
+  /* border: 5px solid black; */
+  /* position:absolute; */
+  width: 50%;
+  aspect-ratio: 1/1;
+  /* flex-grow:1;  */
+}
+
+.controls,
+select,
+option {
+  font-size: 1rem;
+}
+
+@media (max-width: 800px) {
+  #canvas1 {
+    width: 75%;
+  }
+}
