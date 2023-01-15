@@ -1,0 +1,1 @@
+body{display:flex;flex-direction:column;min-height:100vh;place-items:center}#canvas1{aspect-ratio:1/1;width:50%}.controls,option,select{font-size:1rem}@media(max-width:800px){#canvas1{width:75%}}
