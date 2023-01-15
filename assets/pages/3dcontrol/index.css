@@ -1,0 +1,8 @@
+#debug {
+  position: absolute;
+  font-family: monospace;
+  top: 10vh;
+  width: 25vw;
+  border: 1px solid white;
+  color: white;
+}
