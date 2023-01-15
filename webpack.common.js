@@ -62,7 +62,24 @@ module.exports = {
                     "postcss-loader",
                     "sass-loader"
                     ]
-            }
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                  {
+                    loader: 'file-loader',
+                    options: {
+                        outputPath: (url, resourcePath, context) => {
+                            const relativePath = path.relative(context, resourcePath)
+                            const tmp =  relativePath.replace(/^src\/pages\//, '')
+                            const res = tmp.replace(tmp.slice(tmp.lastIndexOf('/')+1), url)
+                            return res
+                        },
+                        name: '[contenthash].[ext]',
+                    }
+                  },
+                ],
+            },
         ]
     },
     resolve: {

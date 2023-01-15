@@ -4,3 +4,5 @@ dist
 coverage
 *.js
 *.mp4
+*.zip
+.DS_STORE
