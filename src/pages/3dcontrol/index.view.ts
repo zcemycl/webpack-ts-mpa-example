@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import Stats from 'three/examples/jsm/libs/stats.module'
+import { GUI } from 'dat.gui'
 
 export interface IView {
   app: HTMLCanvasElement
@@ -8,7 +9,7 @@ export interface IView {
   camera: THREE.PerspectiveCamera
   renderer: THREE.WebGLRenderer
   geometry: THREE.BoxGeometry
-  material: THREE.MeshBasicMaterial
+  material: THREE.MeshStandardMaterial
   stats: Stats
   cube: THREE.Mesh
   object2: THREE.Mesh
@@ -25,7 +26,7 @@ export class View implements IView {
   camera: THREE.PerspectiveCamera
   renderer: THREE.WebGLRenderer
   geometry: THREE.BoxGeometry
-  material: THREE.MeshBasicMaterial
+  material: THREE.MeshStandardMaterial
   cube: THREE.Mesh
   object2: THREE.Mesh
   debug: HTMLDivElement
@@ -58,9 +59,11 @@ export class View implements IView {
     window.addEventListener('resize', this.onWindowResize, true)
 
     this.geometry = new THREE.BoxGeometry()
-    this.material = new THREE.MeshBasicMaterial({
+    this.material = new THREE.MeshStandardMaterial({
       color: 0x00ff00,
       wireframe: true,
+      metalness: 1,
+      roughness: 1,
     })
 
     this.cube = new THREE.Mesh(this.geometry, this.material)
@@ -74,6 +77,42 @@ export class View implements IView {
     this.object2.position.set(2, 0, 0)
     this.cube.add(this.object2)
     this.object2.add(new THREE.AxesHelper(4))
+
+    const obj3 = new THREE.Mesh(new THREE.TorusKnotGeometry(), new THREE.MeshPhongMaterial({ color: 'red' }))
+    obj3.position.set(0, 4, 0)
+    this.scene.add(obj3)
+
+    const material = new THREE.MeshNormalMaterial()
+    const geometry = new THREE.BufferGeometry()
+    const points = [
+      new THREE.Vector3(-1, 1, -1), //c
+      new THREE.Vector3(-1, -1, 1), //b
+      new THREE.Vector3(1, 1, 1), //a
+
+      new THREE.Vector3(1, 1, 1), //a
+      new THREE.Vector3(1, -1, -1), //d
+      new THREE.Vector3(-1, 1, -1), //c
+
+      new THREE.Vector3(-1, -1, 1), //b
+      new THREE.Vector3(1, -1, -1), //d
+      new THREE.Vector3(1, 1, 1), //a
+
+      new THREE.Vector3(-1, 1, -1), //c
+      new THREE.Vector3(1, -1, -1), //d
+      new THREE.Vector3(-1, -1, 1), //b
+    ]
+
+    geometry.setFromPoints(points)
+    geometry.computeVertexNormals()
+
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.position.set(0, 2, -4)
+    this.scene.add(mesh)
+
+    const gui = new GUI()
+    const materialFolder = gui.addFolder('Cube Three Material')
+    materialFolder.add(this.material, 'wireframe')
+    materialFolder.open()
 
     this.animate()
   }
