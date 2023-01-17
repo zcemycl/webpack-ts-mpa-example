@@ -26,6 +26,7 @@ div.section {
   margin: 10vh 0 0 0;
   height: 40vh;
   display: grid;
+  /* visibility: hidden; */
   place-items: center;
 }
 
