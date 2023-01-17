@@ -1,4 +1,5 @@
 import { spriteAnimations } from './data'
+import sprite from './shadow_dog.png'
 
 export interface IView {
   canvas: HTMLCanvasElement
@@ -43,7 +44,7 @@ export class View implements IView {
     this.gameFrame = 0
     this.staggerFrames = 5
     this.playerImage = new Image(this.cw, this.ch)
-    this.playerImage.src = 'https://www.frankslaboratory.co.uk/downloads/shadow_dog.png'
+    this.playerImage.src = sprite
 
     window.addEventListener('resize', this.getCanvasSize)
     this.dropdown.addEventListener('change', e => {
