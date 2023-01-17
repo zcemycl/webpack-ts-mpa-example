@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --coverage",
     "start": "webpack-dev-server",
-    "build": "webpack --config webpack.config.prod.js",
+    "build": "webpack --config webpack.config.prod.ts",
     "start:prod": "ts-node server.ts",
     "lint": "eslint . --ext .js,.ts",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(html|css|js|ts|json)\"",

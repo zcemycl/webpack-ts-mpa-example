@@ -16,9 +16,84 @@ export interface IView {
   getCanvasSize: () => void
   animate: () => void
 
-  bgLayers: HTMLImageElement[]
+  bgLayers: ILayer[]
   i: number
   i2: number
+}
+
+export interface ILayer {
+  x: number
+  y: number
+  aspect_ratio: number
+  width: number
+  height: number
+  gameSpeed: number
+  image: HTMLImageElement
+  speedModifier: number
+  speed: number
+  view: IView
+  x2: number
+
+  update: () => void
+  draw: () => void
+}
+
+class Layer implements ILayer {
+  x = 0
+  y = 0
+  aspect_ratio = 16 / 9
+  width = 2400
+  height = 720
+  gameSpeed = 5
+  image: HTMLImageElement
+  speedModifier: number
+  speed: number
+  view: IView
+
+  x2: number
+
+  constructor(image: HTMLImageElement, speedModifier: number, view: IView) {
+    this.image = image
+    this.speedModifier = speedModifier
+    this.speed = this.gameSpeed * this.speedModifier
+    this.view = view
+    this.x2 = this.width
+  }
+
+  update() {
+    this.speed = this.gameSpeed * this.speedModifier
+    if (this.x <= -this.width) this.x = this.width + this.x2 - this.speed
+
+    if (this.x <= -this.width) this.x2 = this.width + this.x - this.speed
+
+    this.x = Math.floor(this.x - this.speed)
+    this.x2 = Math.floor(this.x2 - this.speed)
+  }
+
+  draw() {
+    this.view.ctx.drawImage(
+      this.image,
+      this.x,
+      0,
+      this.height * this.aspect_ratio,
+      this.height,
+      0,
+      0,
+      this.view.cw,
+      this.view.ch
+    )
+    this.view.ctx.drawImage(
+      this.image,
+      this.x2,
+      0,
+      this.height * this.aspect_ratio,
+      this.height,
+      0,
+      0,
+      this.view.cw,
+      this.view.ch
+    )
+  }
 }
 
 export class View implements IView {
@@ -35,7 +110,7 @@ export class View implements IView {
   staggerFrames = 5
   aspect_ratio = 16 / 9
 
-  bgLayers: HTMLImageElement[] = []
+  bgLayers: ILayer[] = []
   i = 0
   i2 = 2400
 
@@ -53,7 +128,7 @@ export class View implements IView {
     for (let layerid = 0; layerid < bgSrcList.length; layerid++) {
       const tmpBgLayer = new Image()
       tmpBgLayer.src = bgSrcList[layerid]
-      this.bgLayers.push(tmpBgLayer)
+      this.bgLayers.push(new Layer(tmpBgLayer, 0.5, this))
     }
 
     this.animate()
@@ -66,20 +141,13 @@ export class View implements IView {
     size = Math.round(size)
     this.cw = this.canvas.width = size
     this.ch = this.canvas.height = size / this.aspect_ratio
-    // console.log(this.cw,this.cw*9/16)
   }
 
   animate = () => {
     this.ctx.clearRect(0, 0, this.cw, this.ch)
-    // this.ctx.drawImage(this.bgLayers[0], this.i, 0)
-    // this.ctx.drawImage(this.bgLayers[1], this.i, 0)
-    // this.ctx.drawImage(this.bgLayers[2], this.i, 0)
-    this.ctx.drawImage(this.bgLayers[3], this.i, 0, 720 * this.aspect_ratio, 720, 0, 0, this.cw, this.ch)
-    this.ctx.drawImage(this.bgLayers[3], this.i2, 0, 720 * this.aspect_ratio, 720, 0, 0, this.cw, this.ch)
-    if (this.i < -2400) this.i = 2400 + this.i2 - this.gameSpeed
-    this.i -= this.gameSpeed
-    if (this.i2 < -2400) this.i2 = 2400 + this.i - this.gameSpeed
-    this.i2 -= this.gameSpeed
+    this.bgLayers[3].draw()
+    this.bgLayers[3].update()
+
     requestAnimationFrame(this.animate.bind(this))
   }
 }
