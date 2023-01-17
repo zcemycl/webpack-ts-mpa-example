@@ -27,7 +27,6 @@ export interface ILayer {
   aspect_ratio: number
   width: number
   height: number
-  gameSpeed: number
   image: HTMLImageElement
   speedModifier: number
   speed: number
@@ -44,7 +43,6 @@ class Layer implements ILayer {
   aspect_ratio = 16 / 9
   width = 2400
   height = 720
-  gameSpeed = 5
   image: HTMLImageElement
   speedModifier: number
   speed: number
@@ -54,17 +52,18 @@ class Layer implements ILayer {
 
   constructor(image: HTMLImageElement, speedModifier: number, view: IView) {
     this.image = image
-    this.speedModifier = speedModifier
-    this.speed = this.gameSpeed * this.speedModifier
     this.view = view
+    this.speedModifier = speedModifier
+    this.speed = this.view.gameSpeed * this.speedModifier
+
     this.x2 = this.width
   }
 
   update() {
-    this.speed = this.gameSpeed * this.speedModifier
+    this.speed = this.view.gameSpeed * this.speedModifier
     if (this.x <= -this.width) this.x = this.width + this.x2 - this.speed
 
-    if (this.x <= -this.width) this.x2 = this.width + this.x - this.speed
+    if (this.x2 <= -this.width) this.x2 = this.width + this.x - this.speed
 
     this.x = Math.floor(this.x - this.speed)
     this.x2 = Math.floor(this.x2 - this.speed)
@@ -106,7 +105,7 @@ export class View implements IView {
   spriteWidth = 575
   spriteHeight = 523
   gameFrame: number
-  gameSpeed = 5
+  gameSpeed = 10
   staggerFrames = 5
   aspect_ratio = 16 / 9
 
@@ -128,7 +127,7 @@ export class View implements IView {
     for (let layerid = 0; layerid < bgSrcList.length; layerid++) {
       const tmpBgLayer = new Image()
       tmpBgLayer.src = bgSrcList[layerid]
-      this.bgLayers.push(new Layer(tmpBgLayer, 0.5, this))
+      this.bgLayers.push(new Layer(tmpBgLayer, 0.2 * (layerid + 1), this))
     }
 
     this.animate()
@@ -145,8 +144,10 @@ export class View implements IView {
 
   animate = () => {
     this.ctx.clearRect(0, 0, this.cw, this.ch)
-    this.bgLayers[3].draw()
-    this.bgLayers[3].update()
+    for (const layer of this.bgLayers) {
+      layer.draw()
+      layer.update()
+    }
 
     requestAnimationFrame(this.animate.bind(this))
   }
