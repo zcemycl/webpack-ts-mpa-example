@@ -1,110 +1,19 @@
+import { IView, ILayer } from './types/index'
+import { Layer } from './layer'
 import { bg1, bg2, bg3, bg4, bg5 } from './resources/import'
 
-export interface IView {
+class View implements IView {
   canvas: HTMLCanvasElement
   ctx: CanvasRenderingContext2D
-  cw: number
-  ch: number
-  sm_width_percentage: number
-  lg_width_percentage: number
-  spriteWidth: number
-  spriteHeight: number
-  gameFrame: number
-  gameSpeed: number
-  staggerFrames: number
-  aspect_ratio: number
-  getCanvasSize: () => void
-  animate: () => void
-
-  bgLayers: ILayer[]
-  i: number
-  i2: number
-}
-
-export interface ILayer {
-  x: number
-  y: number
-  aspect_ratio: number
-  width: number
-  height: number
-  image: HTMLImageElement
-  speedModifier: number
-  speed: number
-  view: IView
-  x2: number
-
-  update: () => void
-  draw: () => void
-}
-
-class Layer implements ILayer {
-  x = 0
-  y = 0
-  aspect_ratio = 16 / 9
-  width = 2400
-  height = 720
-  image: HTMLImageElement
-  speedModifier: number
-  speed: number
-  view: IView
-
-  x2: number
-
-  constructor(image: HTMLImageElement, speedModifier: number, view: IView) {
-    this.image = image
-    this.view = view
-    this.speedModifier = speedModifier
-    this.speed = this.view.gameSpeed * this.speedModifier
-
-    this.x2 = this.width
-  }
-
-  update() {
-    this.speed = this.view.gameSpeed * this.speedModifier
-    if (this.x <= -this.width) this.x = this.width + this.x2 - this.speed
-
-    if (this.x2 <= -this.width) this.x2 = this.width + this.x - this.speed
-
-    this.x = Math.floor(this.x - this.speed)
-    this.x2 = Math.floor(this.x2 - this.speed)
-  }
-
-  draw() {
-    this.view.ctx.drawImage(
-      this.image,
-      this.x,
-      0,
-      this.height * this.aspect_ratio,
-      this.height,
-      0,
-      0,
-      this.view.cw,
-      this.view.ch
-    )
-    this.view.ctx.drawImage(
-      this.image,
-      this.x2,
-      0,
-      this.height * this.aspect_ratio,
-      this.height,
-      0,
-      0,
-      this.view.cw,
-      this.view.ch
-    )
-  }
-}
-
-export class View implements IView {
-  canvas: HTMLCanvasElement
-  ctx: CanvasRenderingContext2D
+  slider: HTMLInputElement
+  showGameSpeed: HTMLSpanElement
   cw: number
   ch: number
   sm_width_percentage: number
   lg_width_percentage: number
   spriteWidth = 575
   spriteHeight = 523
-  gameFrame: number
+  gameFrame = 0
   gameSpeed = 10
   staggerFrames = 5
   aspect_ratio = 16 / 9
@@ -116,12 +25,22 @@ export class View implements IView {
   constructor() {
     this.canvas = document.getElementById('canvas1') as HTMLCanvasElement
     this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D
+    this.slider = document.getElementById('slider') as HTMLInputElement
+    this.slider.value = this.gameSpeed.toString()
+    this.showGameSpeed = document.getElementById('showGameSpeed') as HTMLSpanElement
+    this.showGameSpeed.innerHTML = this.gameSpeed.toString()
     const varStyle = getComputedStyle(document.documentElement)
     this.gameFrame = 0
     this.sm_width_percentage = parseInt(varStyle.getPropertyValue('--sm-screen-width-percentage')) / 100
     this.lg_width_percentage = parseInt(varStyle.getPropertyValue('--lg-screen-width-percentage')) / 100
     this.getCanvasSize()
+
     window.addEventListener('resize', this.getCanvasSize)
+    this.slider.addEventListener('change', e => {
+      const target = e.target as HTMLInputElement
+      this.gameSpeed = parseInt(target.value)
+      this.showGameSpeed.innerHTML = target.value
+    })
 
     const bgSrcList = [bg1, bg2, bg3, bg4, bg5]
     for (let layerid = 0; layerid < bgSrcList.length; layerid++) {
@@ -148,7 +67,9 @@ export class View implements IView {
       layer.draw()
       layer.update()
     }
-
+    // this.gameFrame ++;
     requestAnimationFrame(this.animate.bind(this))
   }
 }
+
+export { View, IView }
