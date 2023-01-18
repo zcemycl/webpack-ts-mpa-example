@@ -9,26 +9,45 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.0/css/all.css" />
   </head>
   <body>
-    <div class="section" style="visibility: hidden">
-      <div class="card-swiper">
-        <div class="card-groups">
-          <% var template = require('html-loader!../components/home/card_group/template.html').default %>
-          <%=template.replace("what-is-index", "0").replace("what-is-status", "active")%> <% var template =
-          require('html-loader!../components/home/card_group/template.html').default %>
-          <%=template.replace("what-is-index", "1").replace("what-is-status", "unknown")%> <% var template =
-          require('html-loader!../components/home/card_group/template.html').default %>
-          <%=template.replace("what-is-index", "2").replace("what-is-status", "unknown")%>
-        </div>
-        <div class="card-swiper-buttons">
-          <button id="prev-button">
-            <i class="fas fa-arrow-left"></i>
-          </button>
-          <button id="next-button">
-            <i class="fas fa-arrow-right"></i>
-          </button>
+    <div class="loading-bar">
+      <div class="center">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
+    </div>
+    
+    <div class="content-after-loading">
+      <div class="section" style="visibility: hidden">
+        <div class="card-swiper">
+          <div class="card-groups">
+            <% var template = require('html-loader!../components/home/card_group/template.html').default %>
+            <%=template.replace("what-is-index", "0").replace("what-is-status", "active")%> <% var template =
+            require('html-loader!../components/home/card_group/template.html').default %>
+            <%=template.replace("what-is-index", "1").replace("what-is-status", "unknown")%> <% var template =
+            require('html-loader!../components/home/card_group/template.html').default %>
+            <%=template.replace("what-is-index", "2").replace("what-is-status", "unknown")%>
+          </div>
+          <div class="card-swiper-buttons">
+            <button id="prev-button">
+              <i class="fas fa-arrow-left"></i>
+            </button>
+            <button id="next-button">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
+    
     <div id="root"></div>
+
   </body>
 </html>
