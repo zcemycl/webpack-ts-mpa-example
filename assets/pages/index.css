@@ -5,8 +5,11 @@ html {
 #root {
   /* height: 90%; */
   width: 95%;
-  padding: 2%;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  /* padding: 2%; */
+  /* text-align: center; */
   margin: 25vh 0 0 0;
 }
 
@@ -20,7 +23,11 @@ h4.output {
 body {
   background-color: black;
   margin: 0px;
-  overflow-y: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  /* overflow-y: hidden; */
 }
 
 div.section {
@@ -278,8 +285,36 @@ div.section {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #000;
+  background: transparent;
 }
+
+.loading-bar,
+.content-after-loading,
+#root {
+  position: absolute;
+}
+
+.loading-bar {
+  opacity: 1;
+  z-index: -1;
+  background-color: transparent;
+  transition: opacity 1s ease-in;
+}
+
+.off {
+  opacity: 0;
+}
+
+.content-after-loading {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+  transition-delay: 1s;
+}
+
+.on {
+  opacity: 1;
+}
+
 .wave {
   width: 5px;
   height: 100px;
