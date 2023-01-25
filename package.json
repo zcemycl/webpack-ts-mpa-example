@@ -41,6 +41,9 @@
   "lint-staged": {
     "./**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "npm run format",
+      "git add"
+    ],
+    "./**/*.{js,jsx,ts,tsx,json,md}": [
       "npm run lint",
       "git add"
     ]
