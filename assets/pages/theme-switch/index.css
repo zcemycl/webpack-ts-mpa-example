@@ -1,0 +1,68 @@
+:root {
+  --default-body-bg: rgb(99, 153, 165);
+  --default-card-bg: rgb(200, 200, 200);
+  --default-text: rgba(51, 64, 67, 0.8);
+  --default-heading: rgb(28, 69, 80);
+}
+
+body {
+  min-height: 95vh;
+  padding: 0 5rem;
+  margin: 3rem 1rem 5rem;
+  font-size: 1rem;
+  font-family: system-ui, sans-serif;
+  background: var(--default-body-bg);
+  color: var(--default-text);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--default-heading);
+  line-height: 1.1;
+}
+
+.card-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1.5em;
+  row-gap: 1.5em;
+}
+
+.card {
+  background-color: var(--default-card-bg);
+  position: relative;
+  border-radius: 0.3em;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 0.3rem;
+  background-color: var(--default-heading);
+  border: 1px solid black;
+}
+
+.card > h3 {
+  padding: 0 0.75em;
+  margin: 1em 0 0 0;
+}
+
+.card > p {
+  padding: 0 0.75em;
+  margin: 0.5em 0 1.7em 0;
+}
+
+@media (max-width: 800px) {
+  .card-group {
+    grid-template-columns: 1fr;
+  }
+
+  body {
+    min-height: 95vh;
+    padding: 0 1rem;
+    font-size: 0.7rem;
+  }
+}
