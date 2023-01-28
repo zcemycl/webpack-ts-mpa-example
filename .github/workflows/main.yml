@@ -20,6 +20,10 @@ jobs:
 
       - name: Build
         run: |
+          touch .env
+          echo userPoolId=${{ secrets.USERPOOLID }} >> .env
+          echo clientId=${{ secrets.CLIENTID }} >> .env
+          echo domain=${{ secrets.DOMAIN }} >> .env
           npm run build
         env:
           userPoolId: ${{ secrets.USERPOOLID }}
