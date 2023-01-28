@@ -54,6 +54,13 @@ export class Controller implements IControl {
     event.preventDefault()
     this.model.username = this.view.inputEmail.value
     console.log('click!!')
+
+    const response = grecaptcha.getResponse()
+    if (response.length === 0) {
+      this.view.warnText.innerHTML = 'reCAPTCHA is not checked.'
+      return
+    }
+
     this.view.gpBeforeCode.forEach(element => {
       element.style.display = 'none'
     })

@@ -9,6 +9,7 @@ export interface IControl {
   validateEnv: () => void
   signupCallback: () => void
   resetCallback: (element: HTMLElement) => void
+  redirectCallback: (event: MouseEvent, suffix: string) => void
 }
 
 export class Controller implements IControl {
@@ -19,30 +20,22 @@ export class Controller implements IControl {
     this.model = model
     this.view = view
     this.view.submitBtn.addEventListener('click', this.submitCallback)
-    this.view.forgotLink.addEventListener('click', e => {
-      e.preventDefault()
-      const suffix = '/forgot'
-      console.log(suffix, 'Redirecting to ... ')
-      if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-        location.href = '/webpack-ts-mpa-example' + suffix
-      } else {
-        location.href = suffix
-      }
-    })
-    this.view.loginLink.addEventListener('click', e => {
-      e.preventDefault()
-      const suffix = '/login'
-      console.log(suffix, 'Redirecting to ... ')
-      if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-        location.href = '/webpack-ts-mpa-example' + suffix
-      } else {
-        location.href = suffix
-      }
-    })
+    this.view.forgotLink.addEventListener('click', e => this.redirectCallback(e, '/forgot'))
+    this.view.loginLink.addEventListener('click', e => this.redirectCallback(e, '/login'))
     this.resetCallback(this.view.inputEmail)
     this.resetCallback(this.view.inputPwd)
     this.resetCallback(this.view.inputConfirmPwd)
     this.validateEnv()
+  }
+
+  redirectCallback = (event: MouseEvent, suffix: string) => {
+    event.preventDefault()
+    console.log(suffix, 'Redirecting to ... ')
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      location.href = '/webpack-ts-mpa-example' + suffix
+    } else {
+      location.href = suffix
+    }
   }
 
   submitCallback = (event: MouseEvent) => {
@@ -55,6 +48,12 @@ export class Controller implements IControl {
 
     if (this.model.password !== this.model.confirmPassword) {
       this.view.warnText.innerHTML = 'Password not maching.'
+      return
+    }
+
+    const response = grecaptcha.getResponse()
+    if (response.length === 0) {
+      this.view.warnText.innerHTML = 'reCAPTCHA is not checked.'
       return
     }
 
