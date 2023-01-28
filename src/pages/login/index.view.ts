@@ -2,7 +2,7 @@ export interface IView {
   inputEmail: HTMLInputElement
   inputPwd: HTMLInputElement
   inputConfirmPwd: HTMLInputElement
-  submitBtn: HTMLButtonElement
+  submitBtn: HTMLInputElement
   warnText: HTMLDivElement
   forgotLink: HTMLButtonElement
   signupLink: HTMLButtonElement
@@ -10,7 +10,7 @@ export interface IView {
 
 export class View implements IView {
   inputEmail: HTMLInputElement
-  submitBtn: HTMLButtonElement
+  submitBtn: HTMLInputElement
   inputPwd: HTMLInputElement
   inputConfirmPwd: HTMLInputElement
   warnText: HTMLDivElement
@@ -19,7 +19,7 @@ export class View implements IView {
 
   constructor() {
     this.inputEmail = document.querySelector('[name="email"]') as HTMLInputElement
-    this.submitBtn = document.querySelector('button.submit') as HTMLButtonElement
+    this.submitBtn = document.querySelector('input.submit') as HTMLInputElement
     this.inputPwd = document.querySelector('[name="pwd"]') as HTMLInputElement
     this.inputConfirmPwd = document.querySelector('[name="confirmpwd"]') as HTMLInputElement
     this.warnText = document.querySelector('div.warn') as HTMLDivElement

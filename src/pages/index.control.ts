@@ -1,10 +1,12 @@
 import { IModel } from './index.model'
 import { IView } from './index.view'
-import { CognitoUserPool } from 'amazon-cognito-identity-js'
+import { CognitoUserPool, CognitoUser } from 'amazon-cognito-identity-js'
 
 export interface IController {
   model: IModel
   view: IView
+  userPool: CognitoUserPool
+  user: CognitoUser
   onDataChanged: (data: number[]) => void
   handleAddRandom: (num: number) => void
 }
@@ -22,6 +24,8 @@ export const aboutCallback = () => {
 export class Controller implements IController {
   model: IModel
   view: IView
+  userPool: CognitoUserPool
+  user: CognitoUser
 
   constructor(model: IModel, view: IView) {
     this.model = model
@@ -42,8 +46,20 @@ export class Controller implements IController {
         ClientId: process.env.clientId as string,
         // Storage: new CookieStorage({ domain: process.env.domain as string }),
       }
-      const userPool = new CognitoUserPool(poolData)
-      console.log(userPool.getCurrentUser())
+      this.userPool = new CognitoUserPool(poolData)
+      console.log(this.userPool)
+      this.user = this.userPool.getCurrentUser() as CognitoUser
+      console.log(this.user)
+      if (this.user !== null) {
+        this.view.signoutBtn = this.view.createElement('button') as HTMLButtonElement
+        this.view.signoutBtn.textContent = 'Click to Sign Out'
+        this.view.signoutBtn.addEventListener('click', () => {
+          this.user.signOut()
+          console.log('user? ', this.user)
+          this.view.signoutBtn.style.display = 'none'
+        })
+        this.view.app.append(this.view.signoutBtn)
+      }
     } catch (e) {
       console.log(e)
     }

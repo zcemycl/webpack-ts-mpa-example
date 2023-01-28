@@ -7,6 +7,7 @@ export interface IView {
   paragraph: HTMLElement
   prevbtn: HTMLButtonElement
   nextbtn: HTMLButtonElement
+  signoutBtn: HTMLButtonElement
   groups: HTMLCollectionOf<HTMLDivElement>
   getElement: (selector: string) => Element | null
   createElement: (tag: string, className?: string) => HTMLElement
@@ -22,6 +23,7 @@ export class View implements IView {
   prevbtn: HTMLButtonElement
   nextbtn: HTMLButtonElement
   groups: HTMLCollectionOf<HTMLDivElement>
+  signoutBtn: HTMLButtonElement
 
   constructor() {
     console.log(globals?.a)

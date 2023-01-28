@@ -58,8 +58,9 @@ h3 {
   width: fit-content;
 }
 
-button.submit {
+.submit {
   border-radius: 0.5em;
+  grid-column-start: 2;
 }
 
 input {

@@ -44,6 +44,11 @@ export class Controller implements IControl {
     event.preventDefault()
     this.model.username = this.view.inputEmail.value
     this.model.password = this.view.inputPwd.value
+    const response = grecaptcha.getResponse()
+    if (response.length === 0) {
+      this.view.warnText.innerHTML = 'reCAPTCHA is not checked.'
+      return
+    }
     console.log('click!!')
     this.loginCallback()
   }
