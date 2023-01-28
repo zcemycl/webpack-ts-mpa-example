@@ -39,3 +39,7 @@ jobs:
         with:
           branch: gh-pages
           folder: dist
+        env:
+          userPoolId: ${{ secrets.USERPOOLID }}
+          clientId: ${{ secrets.CLIENTID }}
+          domain: ${{ secrets.DOMAIN }}
