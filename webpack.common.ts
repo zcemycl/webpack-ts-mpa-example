@@ -1,9 +1,10 @@
-import { Configuration } from 'webpack'
+import { Configuration, DefinePlugin } from 'webpack'
 import path from 'path'
 import glob from 'glob'
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import dotenv from 'dotenv'
 
 /**
  * Map output name with required js and css files.
@@ -33,9 +34,13 @@ const htmlgens = Object.keys(entry).map(
     })
 )
 
-const common: Configuration = {
-  entry,
-  plugins: [
+let plugins
+try {
+  const parseDotEnv = JSON.stringify(dotenv.config().parsed)
+  plugins = [
+    new DefinePlugin({
+      'process.env': parseDotEnv,
+    }),
     new webpack.ProvidePlugin({
       globals: path.resolve(__dirname, 'src/utils/index.ts'),
     }),
@@ -43,7 +48,25 @@ const common: Configuration = {
       filename: '[name].css', // Generate css
     }),
     ...htmlgens,
-  ],
+  ]
+} catch (err) {
+  console.log(err)
+  plugins = [
+    new webpack.ProvidePlugin({
+      globals: path.resolve(__dirname, 'src/utils/index.ts'),
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css', // Generate css
+    }),
+    ...htmlgens,
+  ]
+}
+
+const common: Configuration = {
+  entry,
+  plugins: plugins,
+  // externals: {'aws-sdk': 'aws-sdk'},
+  // target: 'node',
   module: {
     rules: [
       {
