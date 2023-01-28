@@ -1,11 +1,13 @@
 export interface IModel {
-  data: number[]
+  username: string
+  code: string
+  password: string
+  confirmPassword: string
 }
 
 export class Model implements IModel {
-  data: number[]
-
-  constructor() {
-    this.data = [1, 2]
-  }
+  username = ''
+  code = ''
+  password = ''
+  confirmPassword = ''
 }
