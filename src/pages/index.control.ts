@@ -1,6 +1,6 @@
 import { IModel } from './index.model'
 import { IView } from './index.view'
-import { CognitoUserPool, CognitoUser } from 'amazon-cognito-identity-js'
+import { CognitoUserPool, CognitoUser, CognitoUserSession } from 'amazon-cognito-identity-js'
 
 export interface IController {
   model: IModel
@@ -50,6 +50,11 @@ export class Controller implements IController {
       console.log(this.userPool)
       this.user = this.userPool.getCurrentUser() as CognitoUser
       console.log(this.user)
+      this.user.getSession((err: Error | null, session: null | CognitoUserSession) => {
+        console.log(session?.isValid())
+        console.log(err as Error)
+        console.log(session as CognitoUserSession)
+      })
       if (this.user !== null) {
         this.view.signoutBtn = this.view.createElement('button') as HTMLButtonElement
         this.view.signoutBtn.textContent = 'Click to Sign Out'
