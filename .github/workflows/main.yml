@@ -21,6 +21,10 @@ jobs:
       - name: Build
         run: |
           npm run build
+        env:
+          userPoolId: ${{ secrets.USERPOOLID }}
+          clientId: ${{ secrets.CLIENTID }}
+          domain: ${{ secrets.DOMAIN }}
       
       - name: Test
         env:
@@ -39,7 +43,4 @@ jobs:
         with:
           branch: gh-pages
           folder: dist
-        env:
-          userPoolId: ${{ secrets.USERPOOLID }}
-          clientId: ${{ secrets.CLIENTID }}
-          domain: ${{ secrets.DOMAIN }}
+        
