@@ -1,5 +1,6 @@
 import { IModel } from './index.model'
 import { IView } from './index.view'
+import { CognitoUserPool } from 'amazon-cognito-identity-js'
 
 export interface IController {
   model: IModel
@@ -34,6 +35,18 @@ export class Controller implements IController {
 
     this.view.nextbtn.onclick = this.handleNextClick
     this.view.prevbtn.onclick = this.handlePrevClick
+
+    try {
+      const poolData = {
+        UserPoolId: process.env.userPoolId as string,
+        ClientId: process.env.clientId as string,
+        // Storage: new CookieStorage({ domain: process.env.domain as string }),
+      }
+      const userPool = new CognitoUserPool(poolData)
+      console.log(userPool.getCurrentUser())
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   onDataChanged = (data: number[]) => {

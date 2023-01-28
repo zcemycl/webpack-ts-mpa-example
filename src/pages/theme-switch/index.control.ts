@@ -1,7 +1,6 @@
 import { IView } from './index.view'
 import { IModel } from './index.model'
 import { CognitoUserPool } from 'amazon-cognito-identity-js'
-// import userPool from '../login/index'
 
 export interface IControl {
   model: IModel
@@ -18,11 +17,16 @@ export class Controller implements IControl {
     this.model = model
     this.view = view
 
-    // try {
-    //   this.userPool = userPool
-    //   console.log(this.userPool.getCurrentUser())
-    // } catch (e) {
-    //   console.log(e)
-    // }
+    try {
+      const poolData = {
+        UserPoolId: process.env.userPoolId as string,
+        ClientId: process.env.clientId as string,
+        // Storage: new CookieStorage({ domain: process.env.domain as string }),
+      }
+      this.userPool = new CognitoUserPool(poolData)
+      console.log(this.userPool.getCurrentUser())
+    } catch (e) {
+      console.log(e)
+    }
   }
 }
