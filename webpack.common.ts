@@ -65,8 +65,6 @@ try {
 const common: Configuration = {
   entry,
   plugins: plugins,
-  // externals: {'aws-sdk': 'aws-sdk'},
-  // target: 'node',
   module: {
     rules: [
       {
